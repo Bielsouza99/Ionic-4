@@ -8,7 +8,10 @@
   <ion-list>
     <ion-list>
       <ion-label>Tipo</ion-label>
-
+      <ion-select placeholder="Qual o tipo do pedido">
+        <ion-select-option value="empadao">Empadão</ion-select-option>
+        <ion-select-option value="escondidinho">Escondidinho</ion-select-option>
+      </ion-select>
     </ion-list>
     <ion-item>
       <ion-label>Sabor</ion-label>
@@ -29,5 +32,11 @@
 
       </ion-select>
     </ion-item>
+    <ion-item>
+      <ion-label>Data de entrega:</ion-label>
+      <ion-datetime display-format="DD MMM YYYY"></ion-datetime>
+    </ion-item>
   </ion-list>
+
+  <ion-button expand="full">Adicionar pedido</ion-button>
 </ion-content>
