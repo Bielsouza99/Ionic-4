@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DetalhesComponent } from './detalhes/detalhes.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,9 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'add', loadChildren: './add/add.module#AddPageModule' }
+  { path: 'add', loadChildren: './add/add.module#AddPageModule' },
+  { path: 'detalhes', component: DetalhesComponent},
+  { path: 'detalhes/:id', component: DetalhesComponent}
 ];
 
 @NgModule({

@@ -1,42 +1,44 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Adicionar pedido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-list>
-      <ion-label>Tipo</ion-label>
-      <ion-select placeholder="Qual o tipo do pedido">
-        <ion-select-option value="empadao">Empadão</ion-select-option>
-        <ion-select-option value="escondidinho">Escondidinho</ion-select-option>
-      </ion-select>
-    </ion-list>
-    <ion-item>
-      <ion-label>Sabor</ion-label>
-     <ion-select placeholder="Escolha um">
-       <ion-select-option value="fc">Frango com catupiry</ion-select-option>
-       <ion-select-option value="cs">Carne Seca</ion-select-option>
-       <ion-select-option></ion-select-option>
-       <ion-select-option></ion-select-option>
-     </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Tamanho</ion-label>
-      <ion-select>
-          <ion-select-option value="p">P</ion-select-option>
-          <ion-select-option value="m">M</ion-select-option>
-          <ion-select-option value="g">G</ion-select-option>
-          <ion-select-option value="f">F</ion-select-option>
-
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label>Data de entrega:</ion-label>
-      <ion-datetime display-format="DD MMM YYYY"></ion-datetime>
-    </ion-item>
-  </ion-list>
-
-  <ion-button expand="full">Adicionar pedido</ion-button>
+  <form [formGroup]="pedidoForm">
+      <ion-list>
+          <ion-list>
+            <ion-label>Tipo</ion-label>
+            <ion-select placeholder="Qual o tipo do pedido" formControlName="tipo">
+              <ion-select-option value="Empadão">Empadão</ion-select-option>
+              <ion-select-option value="Escondidinho">Escondidinho</ion-select-option>
+            </ion-select>
+          </ion-list>
+          <ion-item>
+            <ion-label>Sabor</ion-label>
+           <ion-select  placeholder="Escolha um" formControlName="sabor">
+             <ion-select-option *ngFor="let sabor of saboresEmp" value="{{sabor}}">{{sabor}}</ion-select-option>
+           </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tamanho</ion-label>
+            <ion-select formControlName="tamanho">
+                <ion-select-option value="P">P</ion-select-option>
+                <ion-select-option value="M">M</ion-select-option>
+                <ion-select-option value="G">G</ion-select-option>
+                <ion-select-option value="F">F</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Data de entrega:</ion-label>
+            <ion-datetime formControlName="data_entrega" display-format="DD MMM YYYY"></ion-datetime>
+          </ion-item>
+        </ion-list>
+      
+        <ion-button expand="full" (click)="salvar()" disable="!pedidoForm.value()">Adicionar pedido</ion-button>
+  </form>
+  
 </ion-content>

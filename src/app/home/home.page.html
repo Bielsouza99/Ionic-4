@@ -6,18 +6,31 @@
     <ion-title>
       Home
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/add']"><ion-icon name="add-circle"></ion-icon></ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-progress-bar value="0.5"></ion-progress-bar>
-  </ion-item>
+  <ion-list>
+    <ion-item-sliding *ngFor="let pedido of pedidos">
+      <ion-item detail lines="full" routerLink="/detalhes/{{pedido.key}}">
+        <ion-icon name="pricetag" slot="start"></ion-icon>
+        <p>{{pedido.tipo}}</p>
+        
+        
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="apagar(pedido.key)">Apagar</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/add']">
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" [routerLink]="['/add']">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
   
 </ion-content>

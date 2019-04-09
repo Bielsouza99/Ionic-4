@@ -11,16 +11,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { HttpClientModule } from '@angular/common/http';
+import { DetalhesComponent } from './detalhes/detalhes.component';
+
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DetalhesComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,
