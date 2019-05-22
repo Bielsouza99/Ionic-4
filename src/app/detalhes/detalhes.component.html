@@ -1,3 +1,18 @@
-<p>
-  detalhes works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalhes do pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let pedido of pedidos">
+    <ion-card-title>{{pedido.tipo}}</ion-card-title><br>
+    <ion-card-subtitle><b>{{pedido.data_entrega}}</b></ion-card-subtitle>
+    <ion-card-content>
+       <span>Sabor: </span> {{pedido.sabor}} 
+    </ion-card-content>
+  </ion-card>
+</ion-content>

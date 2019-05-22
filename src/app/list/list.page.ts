@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+
+  pedidos = [];
+  ref = firebase.database().ref('pedidos/');
+
+  constructor( public router: Router) {
+    this.ref.on('value', resp => {
+      this.pedidos = [];
+      this.pedidos = snapshotToArray(resp);
+    });
+  }
+
+  async apagar(key) {
+    firebase.database().ref('pedidos/'+key).remove();
   }
 
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+}
+
+
+
+export const snapshotToArray = snapshot => {
+  const returnArr = [];
+
+  snapshot.forEach(childSnapshot => {
+    const item = childSnapshot.val();
+    item.key = childSnapshot.key;
+    returnArr.push(item);
+  });
+  return returnArr;
 }

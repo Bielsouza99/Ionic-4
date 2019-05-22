@@ -13,11 +13,12 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { DetalhesComponent } from './detalhes/detalhes.component';
+import { LeitorComponent } from './leitor/leitor.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, DetalhesComponent],
+  declarations: [AppComponent, DetalhesComponent, LeitorComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

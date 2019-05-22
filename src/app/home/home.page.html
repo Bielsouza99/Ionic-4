@@ -13,6 +13,9 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-button [routerLink]="['/leitor']">Ir para leitor QRCode</ion-button>
+  </ion-item>
   <ion-list>
     <ion-item-sliding *ngFor="let pedido of pedidos">
       <ion-item detail lines="full" routerLink="/detalhes/{{pedido.key}}">
